@@ -23,7 +23,7 @@ import static com.nucllear.rn_materialcalendarview.Utils.getDayOfWeekFromString;
 
 public class ReactMaterialCalendarViewManager extends SimpleViewManager<ReactMaterialCalendarView> {
 
-    public static final String REACT_CLASS = "RCTMaterialCalendarView";
+    private static final String REACT_CLASS = "RCTMaterialCalendarView";
     private static final String COLOR_REGEX = "^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$";
 
     @Override
@@ -180,6 +180,32 @@ public class ReactMaterialCalendarViewManager extends SimpleViewManager<ReactMat
             }
         }
     }
+
+    // Color customizations
+
+    @ReactProp(name = "selectionColor")
+    public void setSelectionColor(ReactMaterialCalendarView view, String color) {
+        if (color != null) {
+            if (color.matches(COLOR_REGEX)) {
+                view.setSelectionColor(Color.parseColor(color));
+            } else {
+                throw new JSApplicationIllegalArgumentException("Invalid selectionColor property: " + color);
+            }
+        }
+    }
+
+    @ReactProp(name = "weekendsColor")
+    public void setWeekendsColor(ReactMaterialCalendarView view, String color) {
+        if (color != null) {
+            if (color.matches(COLOR_REGEX)) {
+                view.setWeekEndsColor(color);
+            } else {
+                throw new JSApplicationIllegalArgumentException("Invalid weekendsColor property: " + color);
+            }
+        }
+    }
+
+    // Events
 
     /**
      * Returns a map of config data passed to JS that defines eligible events that can be placed on

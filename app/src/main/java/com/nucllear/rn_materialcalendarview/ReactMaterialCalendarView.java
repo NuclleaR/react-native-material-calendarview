@@ -3,7 +3,6 @@ package com.nucllear.rn_materialcalendarview;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -14,12 +13,17 @@ import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.nucllear.rn_materialcalendarview.decorators.EventDecorator;
+import com.nucllear.rn_materialcalendarview.decorators.TodayDecorator;
+import com.nucllear.rn_materialcalendarview.decorators.WeekEndsDecorator;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 
 public class ReactMaterialCalendarView extends MaterialCalendarView implements OnDateSelectedListener, OnMonthChangedListener {
+    private WeekEndsDecorator weekEnds;
+    private EventDecorator events;
     public ReactMaterialCalendarView(Context context) {
         super(context);
         setLayoutParams(new ViewGroup.LayoutParams(
@@ -29,6 +33,11 @@ public class ReactMaterialCalendarView extends MaterialCalendarView implements O
 
         this.setOnDateChangedListener(this);
         this.setOnMonthChangedListener(this);
+
+        weekEnds = new WeekEndsDecorator();
+        events = new EventDecorator("dot");
+
+        this.addDecorators(new TodayDecorator(), weekEnds, events);
     }
 
     private final Runnable mLayoutRunnable = new Runnable() {
@@ -75,5 +84,9 @@ public class ReactMaterialCalendarView extends MaterialCalendarView implements O
                         "topMonthChange",
                         event
                 );
+    }
+
+    public void setWeekEndsColor(String color) {
+        weekEnds.setColor(color);
     }
 }
