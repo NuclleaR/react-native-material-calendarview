@@ -1,0 +1,24 @@
+{
+  "name": "react-native-material-calendarview",
+  "version": "0.0.1",
+  "description": "A simple material-themed calendar view for react native android",
+  "main": "src/RCTMaterialCalendarView.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NuclleaR/react-native-material-calendarview.git"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "android",
+    "material",
+    "material-design",
+    "calendar"
+  ],
+  "author": "NuclleaR <nuclear.890@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NuclleaR/react-native-material-calendarview/issues"
+  },
+  "homepage": "https://github.com/NuclleaR/react-native-material-calendarview"
+}
