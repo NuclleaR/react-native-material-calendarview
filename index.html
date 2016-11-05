@@ -28,7 +28,197 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <p>Add docs in future...</p>
+          <h1>
+<a id="react-native-material-calendarview" class="anchor" href="#react-native-material-calendarview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>React-native-material-calendarview</h1>
+
+<p>A simple material calendar for react native android</p>
+
+<h2>
+<a id="installation-android" class="anchor" href="#installation-android" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation Android</h2>
+
+<ul>
+<li><p><code>npm install --save ...</code></p></li>
+<li>
+<p>In <code>android/settings.gradle</code></p>
+
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-k">..</span>.
+include <span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarView<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>:app<span class="pl-pds">'</span></span>
+project(<span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarView<span class="pl-pds">'</span></span>)<span class="pl-k">.</span>projectDir <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">File</span>(rootProject<span class="pl-k">.</span>projectDir, <span class="pl-s"><span class="pl-pds">'</span>../node_modules/.../app<span class="pl-pds">'</span></span>)</pre></div>
+</li>
+<li>
+<p>In <code>android/app/build.gradle</code></p>
+
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-k">..</span>.
+<span class="pl-en">dependencies</span> {
+    <span class="pl-k">..</span>.
+    compile project(<span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarView<span class="pl-pds">'</span></span>)
+}</pre></div>
+</li>
+<li>
+<p>Register module (in MainApplication.java)</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-k">import</span> <span class="pl-smi">com.nucllear.rn_materialcalendarview.ReactMaterialCalendarViewPackage</span>; <span class="pl-c">// &lt;----- import package</span>
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">MainApplication</span> <span class="pl-k">extends</span> <span class="pl-e">Application</span> <span class="pl-k">implements</span> <span class="pl-e">ReactApplication</span> {
+    <span class="pl-c1">...</span>
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">protected</span> <span class="pl-k">List&lt;<span class="pl-smi">ReactPackage</span>&gt;</span> <span class="pl-en">getPackages</span>() {
+      <span class="pl-k">return</span> <span class="pl-smi">Arrays</span><span class="pl-k">.</span><span class="pl-k">&lt;</span><span class="pl-smi">ReactPackage</span><span class="pl-k">&gt;</span>asList(
+        <span class="pl-k">new</span> <span class="pl-smi">MainReactPackage</span>(),
+        <span class="pl-k">new</span> <span class="pl-smi">ReactMaterialCalendarViewPackage</span>() <span class="pl-c">// &lt;------ add package here</span>
+      );
+    }
+}</pre></div>
+</li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-source-js"><pre>
+<span class="pl-k">import</span> <span class="pl-smi">Calendar</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>...<span class="pl-pds">'</span></span>;
+<span class="pl-k">...</span>
+
+  <span class="pl-en">render</span>() {
+    <span class="pl-k">return</span> (
+      <span class="pl-k">&lt;</span>Calendar
+        width<span class="pl-k">=</span>{(<span class="pl-smi">Dimensions</span>.<span class="pl-c1">get</span>(<span class="pl-s"><span class="pl-pds">'</span>window<span class="pl-pds">'</span></span>).<span class="pl-c1">width</span>)<span class="pl-k">-</span><span class="pl-c1">32</span>}
+        height<span class="pl-k">=</span>{<span class="pl-c1">280</span>}
+        tileHeight<span class="pl-k">=</span>{<span class="pl-c1">35</span>}
+        style<span class="pl-k">=</span>{{alignSelf<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>center<span class="pl-pds">'</span></span>}}
+        topbarVisible<span class="pl-k">=</span>{<span class="pl-c1">true</span>}
+        datesSelection<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>single<span class="pl-pds">'</span></span>}
+        arrowColor<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>#DAFACD<span class="pl-pds">"</span></span>
+        firstDayOfWeek<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>monday<span class="pl-pds">"</span></span>
+        currentDate<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">today</span>}
+        selectionColor<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>#FF3430<span class="pl-pds">"</span></span>
+        selectedDates<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">dates</span>}
+        weekendsDecorator<span class="pl-k">=</span>{<span class="pl-c1">true</span>}
+        eventsDates<span class="pl-k">=</span>{[<span class="pl-s"><span class="pl-pds">"</span>2016/11/20<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>2016/11/29<span class="pl-pds">"</span></span>]}
+        onDateChange<span class="pl-k">=</span>{
+          (<span class="pl-smi">data</span>) <span class="pl-k">=&gt;</span> {
+            <span class="pl-v">this</span>.<span class="pl-en">setState</span>({
+              dates<span class="pl-k">:</span> [<span class="pl-smi">data</span>.<span class="pl-smi">date</span>]
+            })
+          }
+        }
+      <span class="pl-k">/</span><span class="pl-k">&gt;</span>
+    )
+  }</pre></div>
+
+<h2>
+<a id="props" class="anchor" href="#props" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Props</h2>
+
+<ul>
+<li>
+<p>Size</p>
+
+<ul>
+<li><p><em>Integer</em> <strong>width</strong> (required)
+Provide the width of the calendar.</p></li>
+<li><p><em>Integer</em> <strong>height</strong>
+Provide the height. Default will be calculated based on width and <code>topbarVisible</code>.</p></li>
+<li><p><em>Integer</em> <strong>tileWidth</strong>
+Provide the width of one day tile. Set width id DP.</p></li>
+<li><p><em>Integer</em> <strong>tileHeight</strong>
+Provide the height of one day tile. Set height id DP.</p></li>
+<li><p><em>Integer</em> <strong>tileSize</strong>
+Provide the size (width and height) of one day tile. Set size id DP.</p></li>
+</ul>
+</li>
+<li>
+<p>Toolbar options</p>
+
+<ul>
+<li><p><em>boolean</em> <strong>topbarVisible</strong> (default = true)
+Show/hide the top bar which contains the month's title and arrows to go to previous or next months.</p></li>
+<li><p><em>String</em> <strong>arrowColor</strong> (format #RRGGBB of #AARRGGBB)
+A string color. It changes color of the top bar's arrows.</p></li>
+</ul>
+</li>
+<li>
+<p>Calendar config</p>
+
+<ul>
+<li><p><em>String</em> <strong>firstDayOfWeek</strong> (default = 'sunday')
+Set the first day of the week.
+Should be one of [ ‘monday’, ‘tuesday’, ‘wednesday’, ‘thursday’, ‘friday’, ‘saturday’, ‘sunday’ ]</p></li>
+<li><p><em>String</em> <strong>minimumDate</strong> (format 'yyyy/mm/dd')
+Set minimum date for calendar.</p></li>
+<li><p><em>String</em> <strong>maximumDate</strong> (format 'yyyy/mm/dd')
+Set maximum date for calendar.</p></li>
+<li>
+<p><em>String</em> <strong>datesSelection</strong>
+Set the selection mode.</p>
+
+<ul>
+<li>
+<em>none</em>: you cannot select date</li>
+<li>
+<em>range</em>: you can select range of dates</li>
+<li>
+<em>single</em>: you can only select one date at a time</li>
+<li>
+<em>multiple</em>: you can select multiple dates</li>
+</ul>
+</li>
+<li>
+<p><em>String</em> <strong>showOtherDates</strong> (default = 'current')
+Show dates from previous and current months or show dates within current month.</p>
+
+<ul>
+<li>
+<em>all</em>: dates from previous and current months</li>
+<li>
+<em>none</em>: show dates within current month</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Set date</p>
+
+<ul>
+<li>
+<em>String</em> <strong>currentDate</strong> (format 'yyyy/mm/dd')
+Set the focus of the calendar.</li>
+</ul>
+</li>
+<li>
+<p>Color customizations</p>
+
+<ul>
+<li>
+<em>String</em> <strong>selectionColor</strong> (format #RRGGBB of #AARRGGBB)
+Set the color of the selection circle.</li>
+<li>
+<em>String</em> <strong>weekendsColor</strong> (format #RRGGBB of #AARRGGBB)
+Set the color of the weekend.</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="event" class="anchor" href="#event" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event</h2>
+
+<ul>
+<li>onDateChange
+Called when user select/deselect a date. The returned data is
+<code>{ date: 'yyyy/mm/dd', selected: boolean }</code>
+</li>
+<li>onMonthChanged
+Called when user change a month. The returned data is
+<code>{month: int}</code>
+</li>
+</ul>
+
+<hr>
+
+<p>Feel free to <a href="https://github.com/NuclleaR/react-native-material-calendarview/issues">open an issue</a>
+<a href="https://github.com/NuclleaR/react-native-material-calendarview/pulls">Pull requests</a> are also welcome</p>
+
+<p>A lot of thanks to <a href="https://github.com/prolificinteractive" class="user-mention">@prolificinteractive</a> for their awesome <a href="https://github.com/prolificinteractive/material-calendarview">Material Calendar View</a></p>
         </section>
 
         <aside id="sidebar">
