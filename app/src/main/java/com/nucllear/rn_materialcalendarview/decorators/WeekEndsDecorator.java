@@ -3,16 +3,12 @@ package com.nucllear.rn_materialcalendarview.decorators;
 import android.graphics.Color;
 import android.text.style.ForegroundColorSpan;
 
-import com.nucllear.rn_materialcalendarview.ReactMaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
 import java.util.Calendar;
 
-/**
- * Highlight Saturdays and Sundays with a foreground red
- */
 public class WeekEndsDecorator implements DayViewDecorator {
 
     private final Calendar calendar = Calendar.getInstance();

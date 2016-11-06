@@ -24,6 +24,8 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 public class ReactMaterialCalendarView extends MaterialCalendarView implements OnDateSelectedListener, OnMonthChangedListener {
     private WeekEndsDecorator weekEnds;
     private EventDecorator events;
+    private TodayDecorator today;
+
     public ReactMaterialCalendarView(Context context) {
         super(context);
         setLayoutParams(new ViewGroup.LayoutParams(
@@ -35,9 +37,14 @@ public class ReactMaterialCalendarView extends MaterialCalendarView implements O
         this.setOnMonthChangedListener(this);
 
         weekEnds = new WeekEndsDecorator();
-        events = new EventDecorator("dot");
+        events = new EventDecorator();
+        today = new TodayDecorator(context, this.getSelectionColor());
 
-        this.addDecorators(new TodayDecorator(), weekEnds, events);
+        this.addDecorators(today, weekEnds, events);
+    }
+
+    public EventDecorator getEvents() {
+        return events;
     }
 
     private final Runnable mLayoutRunnable = new Runnable() {
@@ -88,5 +95,13 @@ public class ReactMaterialCalendarView extends MaterialCalendarView implements O
 
     public void setWeekEndsColor(String color) {
         weekEnds.setColor(color);
+    }
+
+    public void setEventsColor(String color) {
+        events.setColor(color);
+    }
+
+    public void setTodayColor(String color) {
+        today.setColor(color);
     }
 }
