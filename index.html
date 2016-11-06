@@ -37,13 +37,13 @@
 <a id="installation-android" class="anchor" href="#installation-android" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation Android</h2>
 
 <ul>
-<li><p><code>npm install --save ...</code></p></li>
+<li><p><code>npm i --save react-native-material-calendarview</code></p></li>
 <li>
 <p>In <code>android/settings.gradle</code></p>
 
 <div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-k">..</span>.
 include <span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarView<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>:app<span class="pl-pds">'</span></span>
-project(<span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarView<span class="pl-pds">'</span></span>)<span class="pl-k">.</span>projectDir <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">File</span>(rootProject<span class="pl-k">.</span>projectDir, <span class="pl-s"><span class="pl-pds">'</span>../node_modules/.../app<span class="pl-pds">'</span></span>)</pre></div>
+project(<span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarView<span class="pl-pds">'</span></span>)<span class="pl-k">.</span>projectDir <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">File</span>(rootProject<span class="pl-k">.</span>projectDir, <span class="pl-s"><span class="pl-pds">'</span>../node_modules/react-native-material-calendarview/app<span class="pl-pds">'</span></span>)</pre></div>
 </li>
 <li>
 <p>In <code>android/app/build.gradle</code></p>
@@ -77,7 +77,7 @@ project(<span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarVi
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
 
 <div class="highlight highlight-source-js"><pre>
-<span class="pl-k">import</span> <span class="pl-smi">Calendar</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>...<span class="pl-pds">'</span></span>;
+<span class="pl-k">import</span> <span class="pl-smi">Calendar</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>react-native-material-calendarview<span class="pl-pds">'</span></span>;
 <span class="pl-k">...</span>
 
   <span class="pl-en">render</span>() {
@@ -89,20 +89,18 @@ project(<span class="pl-s"><span class="pl-pds">'</span>:ReactMaterialCalendarVi
         style<span class="pl-k">=</span>{{alignSelf<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>center<span class="pl-pds">'</span></span>}}
         topbarVisible<span class="pl-k">=</span>{<span class="pl-c1">true</span>}
         datesSelection<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>single<span class="pl-pds">'</span></span>}
-        arrowColor<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>#DAFACD<span class="pl-pds">"</span></span>
         firstDayOfWeek<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>monday<span class="pl-pds">"</span></span>
+        showOtherDates<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>none<span class="pl-pds">"</span></span>
         currentDate<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">today</span>}
-        selectionColor<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>#FF3430<span class="pl-pds">"</span></span>
         selectedDates<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">dates</span>}
-        weekendsDecorator<span class="pl-k">=</span>{<span class="pl-c1">true</span>}
         eventsDates<span class="pl-k">=</span>{[<span class="pl-s"><span class="pl-pds">"</span>2016/11/20<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>2016/11/29<span class="pl-pds">"</span></span>]}
-        onDateChange<span class="pl-k">=</span>{
-          (<span class="pl-smi">data</span>) <span class="pl-k">=&gt;</span> {
-            <span class="pl-v">this</span>.<span class="pl-en">setState</span>({
-              dates<span class="pl-k">:</span> [<span class="pl-smi">data</span>.<span class="pl-smi">date</span>]
-            })
-          }
-        }
+        eventsColor<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>#9C27B0<span class="pl-pds">"</span></span>
+        onDateChange<span class="pl-k">=</span>{<span class="pl-smi">data</span> <span class="pl-k">=&gt;</span> {
+            <span class="pl-en">console</span>.<span class="pl-c1">log</span>(data);
+        }}
+        onMonthChange<span class="pl-k">=</span>{<span class="pl-smi">month</span> <span class="pl-k">=&gt;</span> {
+            <span class="pl-en">console</span>.<span class="pl-c1">log</span>(month);
+        }}
       <span class="pl-k">/</span><span class="pl-k">&gt;</span>
     )
   }</pre></div>
@@ -180,21 +178,24 @@ Show dates from previous and current months or show dates within current month.<
 <p>Set date</p>
 
 <ul>
-<li>
-<em>String</em> <strong>currentDate</strong> (format 'yyyy/mm/dd')
-Set the focus of the calendar.</li>
+<li><p><em>String</em> <strong>currentDate</strong> (format 'yyyy/mm/dd')
+Set the focus of the calendar.</p></li>
+<li><p><em>Array[String]</em> <strong>selectedDates</strong>
+Set selected dates to the calendar.</p></li>
+<li><p><em>Array[String]</em> <strong>eventsDates</strong>
+Set events dates to the calendar.</p></li>
 </ul>
 </li>
 <li>
 <p>Color customizations</p>
 
 <ul>
-<li>
-<em>String</em> <strong>selectionColor</strong> (format #RRGGBB of #AARRGGBB)
-Set the color of the selection circle.</li>
-<li>
-<em>String</em> <strong>weekendsColor</strong> (format #RRGGBB of #AARRGGBB)
-Set the color of the weekend.</li>
+<li><p><em>String</em> <strong>selectionColor</strong> (format #RRGGBB of #AARRGGBB)
+Set the color of the selection circle.</p></li>
+<li><p><em>String</em> <strong>weekendsColor</strong> (format #RRGGBB of #AARRGGBB)
+Set the color of the weekend.</p></li>
+<li><p><em>String</em> <strong>eventsColor</strong> (format #RRGGBB of #AARRGGBB)
+Set the color of the events.</p></li>
 </ul>
 </li>
 </ul>
@@ -215,7 +216,7 @@ Called when user change a month. The returned data is
 
 <hr>
 
-<p>Feel free to <a href="https://github.com/NuclleaR/react-native-material-calendarview/issues">open an issue</a>
+<p>Feel free to <a href="https://github.com/NuclleaR/react-native-material-calendarview/issues">open an issue</a>.
 <a href="https://github.com/NuclleaR/react-native-material-calendarview/pulls">Pull requests</a> are also welcome</p>
 
 <p>A lot of thanks to <a href="https://github.com/prolificinteractive" class="user-mention">@prolificinteractive</a> for their awesome <a href="https://github.com/prolificinteractive/material-calendarview">Material Calendar View</a></p>
