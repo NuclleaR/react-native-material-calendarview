@@ -3,14 +3,14 @@
 A simple material calendar for react native android
 
 ## Installation Android
-- `npm install --save ...`
+- `npm i --save react-native-material-calendarview`
 
 - In `android/settings.gradle`
 
     ```gradle
     ...
     include ':ReactMaterialCalendarView', ':app'
-    project(':ReactMaterialCalendarView').projectDir = new File(rootProject.projectDir, '../node_modules/.../app')
+    project(':ReactMaterialCalendarView').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-material-calendarview/app')
     ```
 
 - In `android/app/build.gradle`
@@ -45,7 +45,7 @@ A simple material calendar for react native android
 
 ```js
 
-import Calendar from '...';
+import Calendar from 'react-native-material-calendarview';
 ...
 
   render() {
