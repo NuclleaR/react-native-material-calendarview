@@ -1,6 +1,6 @@
 {
   "name": "react-native-material-calendarview",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A simple material calendar view for react native android",
   "main": "src/RCTMaterialCalendarView.js",
   "repository": {
