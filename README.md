@@ -57,20 +57,18 @@ import Calendar from 'react-native-material-calendarview';
         style={{alignSelf: 'center'}}
         topbarVisible={true}
         datesSelection={'single'}
-        arrowColor="#DAFACD"
         firstDayOfWeek="monday"
+        showOtherDates="none"
         currentDate={this.state.today}
-        selectionColor="#FF3430"
         selectedDates={this.state.dates}
-        weekendsDecorator={true}
         eventsDates={["2016/11/20", "2016/11/29"]}
-        onDateChange={
-          (data) => {
-            this.setState({
-              dates: [data.date]
-            })
-          }
-        }
+        eventsColor="#9C27B0"
+        onDateChange={data => {
+            console.log(data);
+        }}
+        onMonthChange={month => {
+            console.log(month);
+        }}
       />
     )
   }
@@ -127,12 +125,22 @@ import Calendar from 'react-native-material-calendarview';
 * Set date
   - *String* **currentDate** (format 'yyyy/mm/dd')
   Set the focus of the calendar.
+
+  - *Array[String]* **selectedDates**
+  Set selected dates to the calendar.
+
+  - *Array[String]* **eventsDates**
+  Set events dates to the calendar.
   
 * Color customizations
   - *String* **selectionColor** (format #RRGGBB of #AARRGGBB)
   Set the color of the selection circle.
+ 
   - *String* **weekendsColor** (format #RRGGBB of #AARRGGBB)
   Set the color of the weekend.
+
+  - *String* **eventsColor** (format #RRGGBB of #AARRGGBB)
+  Set the color of the events.
 
 ## Event
 
