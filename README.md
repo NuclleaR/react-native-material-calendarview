@@ -84,10 +84,10 @@ import Calendar from 'react-native-material-calendarview';
   Provide the height. Default will be calculated based on width and ```topbarVisible```.
 
   - *Integer* **tileWidth**
-  Provide the width of one day tile. Set width id DP.
+  Provide the width of one day tile. Set width in DP.
 
   - *Integer* **tileHeight**
-  Provide the height of one day tile. Set height id DP.
+  Provide the height of one day tile. Set height in DP.
 
   - *Integer* **tileSize**
   Provide the size (width and height) of one day tile. Set size id DP.
